@@ -36,3 +36,24 @@ def Ch_test():
                 assert(chb[j]==zb[j])
     return None
 
+def Maj_test():
+    for i in range (20):
+        # Get random integers and calculate Ch(x,y,z)
+        x = random.randint(0,2**32-1)
+        y = random.randint(0,2**32-1)
+        z = random.randint(0,2**32-1)
+        maj = Maj(x,y,z)
+
+        # Convert to 32bit string
+        xb = format(x, '032b')
+        yb = format(y, '032b')
+        zb = format(z, '032b')
+        majb = format(maj, '032b')
+        
+        # Check condition holds for all 32bits
+        for j in range(32):
+            if((int(xb[j])+ int(yb[j])+ int(zb[j]))>1):
+                assert(majb[j]=="1")
+            else:
+                assert(majb[j]=="0")
+    return None
