@@ -7,15 +7,6 @@ def get_k(l):
     n = (l+1)%512
     return (448-n)%512
 
-'''
-
-for i in range (10):
-    l = random.randint(1,10000)
-    k = get_k(l)
-    assert(k>=0)
-    assert((l+1+k)%512 == 448)
-
-'''
 def split_32bit(M):
     '''
     Input: string of length 512
@@ -27,7 +18,7 @@ def split_32bit(M):
         output.append(int(block,2))
     return output
 
-def make_message_schedule(M):
+def get_message_schedule(M):
     W = split_32bit(M).copy()
     for t in range(16,80):
         mid = W[t-3]^W[t-8]^W[t-14]^W[t-16]

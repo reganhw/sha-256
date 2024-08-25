@@ -7,7 +7,7 @@ limit = 2**32
 
 def the(M):
     H = [0x6a09e667, 0xbb67,0x3c6ef372,0xa54ff53a, 0x510e527f,0x9b05688c,0x1f83d9ab,0x5be0cd19]
-    W = make_message_schedule(M)
+    W = get_message_schedule(M)
     a,b,c,d,e,f,g,h = H[0], H[1], H[2], H[3], H[4], H[5], H[6], H[7]
 
     for t in range (63):
