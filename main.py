@@ -1,4 +1,5 @@
 import random
+from bitwise_funcs import*
 def get_k(l):
     '''
     Given 'l', 'k' is the smallest non-negative integer satisfying l+1+k = 448 mod 512.
@@ -22,12 +23,16 @@ def split_32bit(M):
     '''
     output = []
     for i in range (16):
-        output.append(M[32*i:32*(i+1)])
+        block = M[32*i:32*(i+1)]
+        output.append(int(block,2))
     return output
 
 def make_message_schedule(M):
     W = split_32bit(M).copy()
-    return 0
+    for t in range(16,80):
+        mid = W[t-3]^W[t-8]^W[t-14]^W[t-16]
+        W.append(rotl(1,mid))
+    return W
 
 '''
 nums = []
