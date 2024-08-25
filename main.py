@@ -20,12 +20,12 @@ def the(M):
         d = c
         c=b
         b=a
-        a = (T1 + T2)&limit
+        a = (T1 + T2)%limit
     
     values = [a,b,c,d,e,f,g,h]
     for j in range (8):
         H[j] = (H[j]+ values[j])%limit
-        
+
     return H_to_hash(H)
 
 def H_to_hash(H):
