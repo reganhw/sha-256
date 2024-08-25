@@ -7,6 +7,26 @@ def get_k(l):
     n = (l+1)%512
     return (448-n)%512
 
+def padding(M):
+    '''
+    Input: integer
+    '''
+    Mb = bin(M)[2:]
+    l = len(Mb)
+    output = Mb + "1"
+    k = get_k(l)
+    for i in range (k):
+        output = output +"0"
+    
+    output = output+ format(l, '064b')
+    return output
+
+for i in range (20):
+    m = random.randint(0, 2**32-1)
+    result = padding(m)
+    assert(len(result)==512)
+
+
 def split_32bit(M):
     '''
     Input: string of length 512
