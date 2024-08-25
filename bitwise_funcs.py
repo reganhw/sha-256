@@ -32,44 +32,4 @@ def sig0(x):
 
 def sig1(x):
     return rotr(17,x)^rotr(18,x)^shr(10,x)
-'''
-def xor(x,y):
-    result = bin(x^y)[2:]
-    l = len(result)    
-    for i in range (32-l):
-        result = "1"+result
-    return int(result, 2)
 
-print("a:", format(a, '032b'), " b: ", format(b,'032b'))
-print("c:", format(c, '032b'))
-'''
-'''
-import random
-for i in range (20):
-    x = random.randint(0,2**32-1)
-    y = random.randint(0,2**32-1)
-    z = random.randint(0,2**32-1)
-    ch = Ch(x,y,z)
-    xb = format(x, '032b')
-    yb = format(y, '032b')
-    zb = format(z, '032b')
-    chb = format(ch, '032b')
-    
-    
-    for j in range(32):
-        if(xb[j]=='1'):
-            if(chb[j]!=yb[j]):
-                print(f"Error1 at index {j} where x:{x}({xb}), y:{y}({yb}), z:{z}({zb}), ch:{ch}({chb}). chb[j] is {chb[j]} and yb[j] is {yb[j]}")
-                break;
-        else:
-            if(chb[j]!=zb[j]):
-                print(f"Error2 at index {j} where x:{x}({xb}), y:{y}({yb}), z:{z}({zb}), ch:{ch}({chb}). chb[j] is {chb[j]} and zb[j] is {zb[j]}")
-
-
-for i in range (20):
-    x = random.randint(0,2**32-1)
-    n = random.randint(0,31)
-    assert(rotl(n,x)==rotr(32-n,x))
-
-
-'''
