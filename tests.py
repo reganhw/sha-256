@@ -36,4 +36,3 @@ def Ch_test():
                 assert(chb[j]==zb[j])
     return None
 
-
