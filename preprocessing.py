@@ -1,14 +1,16 @@
 import random
 from bitwise_funcs import*
 
-def str_to_bin(string):
+def str_to_bin(M): # Add valid input checker?
     '''
     Takes in a string and converts to a binary string where each character is 8 bits.
     '''
     output = ""
-    for chr in string:
-        output = output+format(ord(chr), '08b')
-
+    
+    for char in M:
+        output = output+format(ord(char), '08b')
+    
+    
     return output
 
 def get_k(l):
@@ -25,7 +27,7 @@ def padding(M):
       - k zeros such that 1+l+k := 448 mod 512
       - l in 64 bits
     '''
-    Mb = bin(M)[2:]                    # convert to binary string
+    Mb = str_to_bin(M)                 # convert to binary string
     l = len(Mb)                        # l = message length
     k = get_k(l)                       # calculate k
     zeros = ""                         # k zeros
@@ -33,12 +35,6 @@ def padding(M):
         zeros = zeros+"0"
     lb = format(l, '064b')             # l in 64bits
     return Mb + "1"+zeros+lb
-
-for i in range (20):
-    m = random.randint(0, 2**32-1)
-    result = padding(m)
-    assert(len(result)==512)
-
 
 def split_32bit(M):
     '''
