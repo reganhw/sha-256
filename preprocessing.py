@@ -1,5 +1,16 @@
 import random
 from bitwise_funcs import*
+
+def str_to_bin(string):
+    '''
+    Takes in a string and converts to a binary string where each character is 8 bits.
+    '''
+    output = ""
+    for chr in string:
+        output = output+format(ord(chr), '08b')
+
+    return output
+
 def get_k(l):
     '''
     Takes in integer l and returns k, the smallest non-negative integer satisfying l+1+k = 448 mod 512.
