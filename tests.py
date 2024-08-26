@@ -1,5 +1,6 @@
 import random
 from bitwise_funcs import*
+from preprocessing import*
 
 def neg_test():
     for i in range (20):
@@ -9,9 +10,9 @@ def neg_test():
 
 def rot_test():
     for i in range (20):
-        x = random.randint(0,2**32-1)
-        n = random.randint(0,31)
-        assert(rotl(n,x)==rotr(32-n,x))
+        x = random.randint(0,2**32-1)   # For a random integer x,
+        n = random.randint(0,31)        # and random n,
+        assert(rotl(n,x)==rotr(32-n,x)) # rotl(n,x) = rotr((32-n,x))
         
 
 def Ch_test():
@@ -57,3 +58,12 @@ def Maj_test():
             else:
                 assert(majb[j]=="0")
     return None
+
+def get_k_test():
+    for i in range (20):                 # For 20 random integers l,
+        l = random.randint(0,10000)
+        k = get_k(l)                     # get k and check:
+        assert(0<=k)                     # k is non-negative
+        assert(k<512)                    # k is the smallest non-negative integer satisfying this
+        assert(((k+1+l)%512)==448)       # k+1+l :=448 mod 512
+

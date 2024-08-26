@@ -2,7 +2,7 @@ import random
 from bitwise_funcs import*
 def get_k(l):
     '''
-    Given 'l', 'k' is the smallest non-negative integer satisfying l+1+k = 448 mod 512.
+    Takes in integer l and returns k, the smallest non-negative integer satisfying l+1+k = 448 mod 512.
     '''
     n = (l+1)%512
     return (448-n)%512
@@ -12,7 +12,7 @@ def padding(M):
     Takes in a message of length l and appends:
       - One "1"
       - k zeros such that 1+l+k := 448 mod 512
-      - l in 64bits
+      - l in 64 bits
     '''
     Mb = bin(M)[2:]                    # convert to binary string
     l = len(Mb)                        # l = message length
