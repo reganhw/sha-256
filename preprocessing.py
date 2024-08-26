@@ -9,17 +9,19 @@ def get_k(l):
 
 def padding(M):
     '''
-    Input: integer
+    Takes in a message of length l and appends:
+      - One "1"
+      - k zeros such that 1+l+k := 448 mod 512
+      - l in 64bits
     '''
-    Mb = bin(M)[2:]
-    l = len(Mb)
-    output = Mb + "1"
-    k = get_k(l)
+    Mb = bin(M)[2:]                    # convert to binary string
+    l = len(Mb)                        # l = message length
+    k = get_k(l)                       # calculate k
+    zeros = ""                         # k zeros
     for i in range (k):
-        output = output +"0"
-    
-    output = output+ format(l, '064b')
-    return output
+        zeros = zeros+"0"
+    lb = format(l, '064b')             # l in 64bits
+    return Mb + "1"+zeros+lb
 
 for i in range (20):
     m = random.randint(0, 2**32-1)
@@ -44,18 +46,3 @@ def get_message_schedule(M):
         mid = W[t-3]^W[t-8]^W[t-14]^W[t-16]
         W.append(rotl(1,mid))
     return W
-
-'''
-nums = []
-for i in range (16):
-    n = random.randint(0, 2**32-1)
-    nums.append(n)
-
-msg = ""
-for n in nums:
-    msg = msg+format(n, '032b')
-
-M = split_32bit(msg)
-
-assert (nums==M)
-'''
