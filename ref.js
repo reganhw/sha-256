@@ -143,3 +143,4 @@
       + h7.toString(16).padStart(8, '0')
   }
 
+console.log(stringToBinary("Hello world"))
