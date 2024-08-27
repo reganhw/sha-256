@@ -14,6 +14,7 @@ def str_to_bin(M):
     
     return output
 
+# ---------------------------------NIST document page 13, section 5.1.1.---------------------------------
 def get_k(l):
     '''
     Takes in integer l and returns k, the smallest non-negative integer satisfying l+1+k = 448 mod 512.
@@ -37,6 +38,8 @@ def padding(M):
     lb = format(l, '064b')             # l in 64bits
     return Mb + "1"+zeros+lb
 
+# ---------------------------------Page 14, section 5.2.1.---------------------------------
+
 def split_512bit(M):
     '''
     Input: String of length 512n for some n.
@@ -59,6 +62,8 @@ def split_32bit(M):
         block = M[32*i:32*(i+1)]
         output.append(int(block,2))
     return output
+
+# ---------------------------------Page 22, section 6.2.2.-1---------------------------------
 
 def get_message_schedule(M):
     '''

@@ -11,13 +11,13 @@ def sha256(M):
     '''
     M_padded = padding(M)                                    # pad M.
     M_blocks = split_512bit(M_padded)                        # split into 512 bit blocks.
-    H = constants.H.copy()                                   # initialise hash values.
-
+    H = constants.H.copy()                                   # NIST document page 22, section 6.2.2-2:
+                                                             # intialise hash.
     for block in M_blocks:                                   # for each message block...
         W = get_message_schedule(block)                      # obtain message schedule.
         working_variables = update_variables(W,H)            # obtain working variables.
         for j in range (8):                                  
-            H[j] = (H[j]+ working_variables[j])%limit        # update hash values.
+            H[j] = (H[j]+ working_variables[j])%limit        # update hash values (section 6.2.2-4.)
 
     return H_to_hex(H)                                       # convert final hash values into hex string.
 
@@ -25,7 +25,7 @@ def update_variables(W,H):
     '''
     Input - W: Message schedule W of a message. Array of 64 integers.
     Input - H: Hash values at the current stage. Array of 8 integers.
-    Output - Array of integers [a,b,c,d,e,f,g,h] as in the NIST specification.
+    Output - Array of integers [a,b,c,d,e,f,g,h] as in NIST document page 22, seciton 6.2.2.-3.
     '''
     a,b,c,d,e,f,g,h = H[0], H[1], H[2], H[3], H[4], H[5], H[6], H[7]
     for t in range (64):

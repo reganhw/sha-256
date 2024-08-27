@@ -8,6 +8,8 @@ def neg(x):
     '''
     return x ^MASK                 
 
+# ---------------------------------NIST document page 8, section 3.2.---------------------------------
+
 def shr(n,x):
     '''
     Right-shifts integer x by n.
@@ -28,6 +30,8 @@ def rotr(n,x):
     result = (x>>n)|(x<<(32-n))      # actual output
     return result & MASK             # keep under 32 bits
 
+# ---------------------------------Page 10, section 4.1.2.---------------------------------
+
 def Ch(x,y,z):
     '''
     Input: Integers x,y,z such that 0<=x,y,z <=2**32-1
@@ -45,8 +49,6 @@ def Maj(x,y,z):
     else -> output[i] =0
     '''
     return (x & y) ^(x & z) ^(y &z)
-
-# Sigma functions as in the NIST document.
 
 def Sig0(x):
     return rotr(2,x)^ rotr(13,x)^rotr(22,x)
