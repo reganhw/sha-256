@@ -1,5 +1,6 @@
 import random
 from bitwise_funcs import*
+from constants import *
 
 def str_to_bin(M): # Add valid input checker?
     '''
@@ -48,8 +49,16 @@ def split_32bit(M):
     return output
 
 def get_message_schedule(M):
+    '''
+    Input: string of length 512
+    Output: array of 64 integers
+    '''
     W = split_32bit(M).copy()
     for t in range(16,64):
-        Wt = sig1(W[t-2]) + W[t-7] + sig0(W[t-15])+W[t-16]
+        Wt = (sig1(W[t-2]) + W[t-7] + sig0(W[t-15])+W[t-16])%(2**32)
         W.append(Wt)
     return W
+
+Wa = get_message_schedule(a_padded)
+for i in range (64):
+    print(f"W[{i}]: ", Wa[i])
