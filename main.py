@@ -29,12 +29,12 @@ def sha256(M):
         H[j] = (H[j]+ values[j])%limit
     
 
-    return H_to_hash(H)
+    return H_to_hex(H)
 
-def H_to_hash(H):
+def H_to_hex(H):
     output = ""
-    for hash in H:
-        output = output + format(hash, '08x')
+    for num in H:
+        output = output + format(num, '08x')
     return output
 
-print(sha256("!$%^&"))
+print(sha256("The quick brown fox jumps over the lazy dog"))
