@@ -1,9 +1,9 @@
 from bitwise_funcs import*
-from constants import *
 
 def str_to_bin(M):
     '''
-    Takes in a string and converts to a binary string where each character is 8 bits.
+    Takes in a string and converts to a binary string.
+    Each character in the string is converted to an 8 bit string.
     '''
     output = ""    
     for char in M:
@@ -23,7 +23,7 @@ def get_k(l):
 
 def padding(M):
     '''
-    Takes in a message string of length l and appends:
+    Takes in a string M of length l and appends:
       - One "1"
       - k zeros such that 1+l+k := 448 mod 512
       - l in 64 bits
@@ -39,11 +39,11 @@ def padding(M):
 
 def split_512bit(M):
     '''
-    Input: string of length 512n for some n.
-    Output: M split into 512bit blocks.
+    Input: String of length 512n for some n.
+    Output: String array, M split into 512bit blocks.
     '''
-    total_blocks = int(len(M)/512)
-    message_blocks = []
+    total_blocks = int(len(M)/512)    # number of total blocks
+    message_blocks = []               # array to store values
     for i in range (total_blocks):
         block = M[512*i:512*(i+1)]
         message_blocks.append(block)
@@ -51,8 +51,8 @@ def split_512bit(M):
 
 def split_32bit(M):
     '''
-    Input: string of length 512
-    Output: Array of 16 blocks of 32 bits
+    Input: String M of length 512
+    Output: Integer array, M split into 16 blocks of 32 bits, each block then converted to an integer.
     '''
     output = []
     for i in range (16):
@@ -62,8 +62,8 @@ def split_32bit(M):
 
 def get_message_schedule(M):
     '''
-    Input: string of length 512
-    Output: array of 64 integers
+    Input: String M of length 512
+    Output: Array of 64 integers, message schedule as described in the NIST document
     '''
     W = split_32bit(M).copy()
     for t in range(16,64):

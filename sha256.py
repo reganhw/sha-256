@@ -4,23 +4,22 @@ import constants
 
 limit = 2**32
 
-
 def sha256(M):
     '''
     Input: Message string M of any length.
     Output: The sha256 hash for M.
     '''
-    M_padded = padding(M)                                    # Pad M.
-    M_blocks = split_512bit(M_padded)                        # Split into 512 bit blocks.
-    H = constants.H.copy()                                   # Initialise hash values.
+    M_padded = padding(M)                                    # pad M.
+    M_blocks = split_512bit(M_padded)                        # split into 512 bit blocks.
+    H = constants.H.copy()                                   # initialise hash values.
 
-    for block in M_blocks:                                   # For each message block...
-        W = get_message_schedule(block)                      # Obtain word schedule.
-        working_variables = update_variables(W,H)            # Obtain working variables.
+    for block in M_blocks:                                   # for each message block...
+        W = get_message_schedule(block)                      # obtain word schedule.
+        working_variables = update_variables(W,H)            # obtain working variables.
         for j in range (8):                                  
-            H[j] = (H[j]+ working_variables[j])%limit        # Update hash values.
+            H[j] = (H[j]+ working_variables[j])%limit        # update hash values.
 
-    return H_to_hex(H)                                       # Convert final hash values into hex string.
+    return H_to_hex(H)                                       # convert final hash values into hex string.
 
 def update_variables(W,H):
     '''
@@ -53,4 +52,8 @@ def H_to_hex(H):
         output = output + format(num, '08x')
     return output
 
-
+# Take input from command line.
+if __name__ == '__main__':
+    message = input("Input: ")
+    hash = sha256(message)
+    print("Hash: ",hash)
