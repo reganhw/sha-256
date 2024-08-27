@@ -1,14 +1,14 @@
-import random
 from bitwise_funcs import*
 from constants import *
 
-def str_to_bin(M): # Add valid input checker?
+def str_to_bin(M):
     '''
     Takes in a string and converts to a binary string where each character is 8 bits.
     '''
-    output = ""
-    
+    output = ""    
     for char in M:
+        if(ord(char)>126):
+            raise Exception(f"The following character is not supported: {char}")
         output = output+format(ord(char), '08b')
     
     
@@ -23,7 +23,7 @@ def get_k(l):
 
 def padding(M):
     '''
-    Takes in a message of length l and appends:
+    Takes in a message string of length l and appends:
       - One "1"
       - k zeros such that 1+l+k := 448 mod 512
       - l in 64 bits
@@ -36,6 +36,18 @@ def padding(M):
         zeros = zeros+"0"
     lb = format(l, '064b')             # l in 64bits
     return Mb + "1"+zeros+lb
+
+def split_512bit(M):
+    '''
+    Input: string of length 512n for some n.
+    Output: M split into 512bit blocks.
+    '''
+    total_blocks = int(len(M)/512)
+    message_blocks = []
+    for i in range (total_blocks):
+        block = M[512*i:512*(i+1)]
+        message_blocks.append(block)
+    return message_blocks
 
 def split_32bit(M):
     '''
