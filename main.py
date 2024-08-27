@@ -8,7 +8,7 @@ limit = 2**32
 def sha256(M):
     M_padded = padding(M)
     M_blocks = split_512bit(M_padded)
-    H = [0x6a09e667, 0xbb67ae85,0x3c6ef372,0xa54ff53a, 0x510e527f,0x9b05688c,0x1f83d9ab,0x5be0cd19]
+    H = constants.H.copy()
     for block in M_blocks:
         W = get_message_schedule(block)
         working_variables = update_variables(W,H)
@@ -33,7 +33,12 @@ def update_variables(W,H):
 
 
 def H_to_hex(H):
+    '''
+    Input: array of integers H
+    Output: each integer in H converted to 8-digit hex and concatenated as a string.
+    '''
     output = ""
     for num in H:
         output = output + format(num, '08x')
     return output
+
