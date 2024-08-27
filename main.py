@@ -1,6 +1,6 @@
 from bitwise_funcs import *
 from preprocessing import *
-from constants import*
+import constants
 
 limit = 2**32
 
@@ -17,7 +17,7 @@ def sha256(M):
 def update_variables(W,H):
     a,b,c,d,e,f,g,h = H[0], H[1], H[2], H[3], H[4], H[5], H[6], H[7]
     for t in range (64):
-        T1 = (h + Sig1(e) + Ch(e,f,g) + K[t] + W[t])%limit
+        T1 = (h + Sig1(e) + Ch(e,f,g) + constants.K[t] + W[t])%limit
         T2 = (Sig0(a) + Maj(a,b,c))%limit
         h = g
         g = f
