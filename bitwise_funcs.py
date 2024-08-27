@@ -43,5 +43,5 @@ def sig0(x):
     return rotr(7,x)^rotr(18,x)^shr(3,x)
 
 def sig1(x):
-    return rotr(17,x)^rotr(18,x)^shr(10,x)
+    return rotr(17,x)^rotr(19,x)^shr(10,x)
 
