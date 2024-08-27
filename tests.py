@@ -12,7 +12,7 @@ def rot_test():
     for i in range (20):
         x = random.randint(0,2**32-1)   # For a random integer x,
         n = random.randint(0,31)        # and random n,
-        assert(rotl(n,x)==rotr(32-n,x)) # rotl(n,x) = rotr((32-n,x))
+        assert(rotl(n,x)==rotr(32-n,x)) # rotl(n,x) = rotr((32-n,x)).
         
 
 def Ch_test():
@@ -39,19 +39,19 @@ def Ch_test():
 
 def Maj_test():
     for i in range (20):
-        # Get random integers and calculate Ch(x,y,z)
+        # Get random integers and calculate Ch(x,y,z).
         x = random.randint(0,2**32-1)
         y = random.randint(0,2**32-1)
         z = random.randint(0,2**32-1)
         maj = Maj(x,y,z)
 
-        # Convert to 32bit string
+        # Convert to 32bit string.
         xb = format(x, '032b')
         yb = format(y, '032b')
         zb = format(z, '032b')
         majb = format(maj, '032b')
         
-        # Check condition holds for all 32bits
+        # Check condition holds for all 32bits.
         for j in range(32):
             if((int(xb[j])+ int(yb[j])+ int(zb[j]))>1):
                 assert(majb[j]=="1")
@@ -67,12 +67,6 @@ def get_k_test():
         assert(k<512)                    # k is the smallest non-negative integer satisfying this
         assert(((k+1+l)%512)==448)       # k+1+l :=448 mod 512
 
-def padding_test():
-    a_output="011000011000000000000000000000000000000000000000000000000000000000000000000000000000000000000000"
-    +"000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000"
-    +"000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000"
-    + "00000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000"
-    +"000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000"
-    +"00000000000000000000000000001000"
 
-
+def sha256_test():
+    assert(sha256("")): 
