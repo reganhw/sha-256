@@ -49,7 +49,7 @@ def split_32bit(M):
 
 def get_message_schedule(M):
     W = split_32bit(M).copy()
-    for t in range(16,80):
-        mid = W[t-3]^W[t-8]^W[t-14]^W[t-16]
-        W.append(rotl(1,mid))
+    for t in range(16,64):
+        Wt = sig1(W[t-2]) + W[t-7] + sig0(W[t-15])+W[t-16]
+        W.append(Wt)
     return W
