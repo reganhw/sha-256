@@ -36,3 +36,5 @@ def H_to_hash(H):
     for hash in H:
         output = output + format(hash, '08x')
     return output
+
+print(sha256("!$%^&"))
