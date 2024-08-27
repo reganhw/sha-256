@@ -14,7 +14,7 @@ def sha256(M):
     H = constants.H.copy()                                   # initialise hash values.
 
     for block in M_blocks:                                   # for each message block...
-        W = get_message_schedule(block)                      # obtain word schedule.
+        W = get_message_schedule(block)                      # obtain message schedule.
         working_variables = update_variables(W,H)            # obtain working variables.
         for j in range (8):                                  
             H[j] = (H[j]+ working_variables[j])%limit        # update hash values.
@@ -23,7 +23,7 @@ def sha256(M):
 
 def update_variables(W,H):
     '''
-    Input - W: Word schedule W of a message. Array of 64 integers.
+    Input - W: Message schedule W of a message. Array of 64 integers.
     Input - H: Hash values at the current stage. Array of 8 integers.
     Output - Array of integers [a,b,c,d,e,f,g,h] as in the NIST specification.
     '''
