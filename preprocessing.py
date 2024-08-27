@@ -58,7 +58,3 @@ def get_message_schedule(M):
         Wt = (sig1(W[t-2]) + W[t-7] + sig0(W[t-15])+W[t-16])%(2**32)
         W.append(Wt)
     return W
-
-Wa = get_message_schedule(a_padded)
-for i in range (64):
-    print(f"W[{i}]: ", Wa[i])
