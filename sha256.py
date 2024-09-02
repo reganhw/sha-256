@@ -10,7 +10,7 @@ def sha256(M):
     '''
     M_padded = padding(M)                                    # pad M.
     M_blocks = split_512bit(M_padded)                        # split into 512 bit blocks.
-    H = constants.H.copy()                                   # NIST document page 22, section 6.2.2-2:
+    H = constants.initial_hash.copy()                                   # NIST document page 22, section 6.2.2-2:
                                                              # intialise hash.
     for block in M_blocks:                                   # for each message block...
         W = get_message_schedule(block)                      # obtain message schedule.

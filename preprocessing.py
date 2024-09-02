@@ -19,7 +19,7 @@ def get_k(l):
     '''
     Takes in integer l and returns k, the smallest non-negative integer satisfying l+1+k = 448 mod 512.
     '''
-    n = (l+1)&511
+    n = (l+1)&511           # &511 is equivalent to %512
     return (448-n)&511
 
 def padding(M):
