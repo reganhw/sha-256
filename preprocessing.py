@@ -1,4 +1,5 @@
 from bitwise_funcs import*
+from constants import MASK
 
 def str_to_bin(M):
     '''
@@ -72,6 +73,6 @@ def get_message_schedule(M):
     '''
     W = split_32bit(M).copy()
     for t in range(16,64):
-        Wt = (sig1(W[t-2]) + W[t-7] + sig0(W[t-15])+W[t-16])%(2**32)
+        Wt = (sig1(W[t-2]) + W[t-7] + sig0(W[t-15])+W[t-16])&MASK
         W.append(Wt)
     return W

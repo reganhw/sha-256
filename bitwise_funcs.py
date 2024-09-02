@@ -1,4 +1,3 @@
-limit = 2**32
 from constants import MASK
 
 def neg(x):
