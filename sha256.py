@@ -1,8 +1,7 @@
 from bitwise_funcs import *
 from preprocessing import *
 import constants
-
-limit = 2**32
+mask = (1 << 32) - 1
 
 def sha256(M):
     '''
@@ -17,7 +16,7 @@ def sha256(M):
         W = get_message_schedule(block)                      # obtain message schedule.
         working_variables = update_variables(W,H)            # obtain working variables.
         for j in range (8):                                  
-            H[j] = (H[j]+ working_variables[j])%limit        # update hash values (section 6.2.2-4.)
+            H[j] = (H[j]+ working_variables[j])&mask         # update hash values (section 6.2.2-4.)
 
     return H_to_hex(H)                                       # convert final hash values into hex string.
 
@@ -29,16 +28,16 @@ def update_variables(W,H):
     '''
     a,b,c,d,e,f,g,h = H[0], H[1], H[2], H[3], H[4], H[5], H[6], H[7]
     for t in range (64):
-        T1 = (h + Sig1(e) + Ch(e,f,g) + constants.K[t] + W[t])%limit
-        T2 = (Sig0(a) + Maj(a,b,c))%limit
+        T1 = (h + Sig1(e) + Ch(e,f,g) + constants.K[t] + W[t])&mask
+        T2 = (Sig0(a) + Maj(a,b,c))&mask
         h = g
         g = f
         f = e
-        e = (d + T1)%limit
+        e = (d + T1)&mask
         d = c
         c=b
         b=a
-        a = (T1 + T2)%limit
+        a = (T1 + T2)&mask
     return a,b,c,d,e,f,g,h
 
 
