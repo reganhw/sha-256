@@ -25,10 +25,6 @@ def sha256_many_block_test():
     assert(sha256(long_str2)=="78a7fab979239554f368f42b7c6cffacd52cc9823bd920b1bd40f869713845cc")
     assert(sha256(long_str3)=="80f48d65f3de367836fecac2fd98c034d3bfcc9d280b374881c0b6bf88e18825")
 
-if __name__ == '__main__':
-    sha256_single_block_test()
-    sha256_many_block_test()
-    
 
 #-----------------------------------------------------------------------------------------------------------
 
@@ -98,3 +94,7 @@ def get_k_test():
         assert(((k+1+l)%512)==448)       # k+1+l :=448 mod 512
 
 
+if __name__ == '__main__':
+    sha256_single_block_test()
+    sha256_many_block_test()
+  
