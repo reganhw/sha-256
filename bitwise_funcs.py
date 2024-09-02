@@ -1,5 +1,5 @@
 limit = 2**32
-MASK = (1 << 32) - 1
+from constants import MASK
 
 def neg(x):
     '''
