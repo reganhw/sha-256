@@ -7,14 +7,21 @@
 </head>
 <body>
     <h1>Enter your input</h1>
+    {% with messages = get_flashed_messages() %}
+            {% for message in messages %}
+                <h2 style="color: red;">Error: {{ message }}</h2>
+            {% endfor %}
+    {% endwith %}
+
     <form action="/" method="POST">
         <input type="text" name="user_input" placeholder="Enter a value">
-        <input type="submit" value="Submit">
+        <button type="submit">Submit</button>
     </form>
+
+
+
     {% if result %}
         <h2>Result: {{ result }}</h2>
-    {% elif error is not none %}
-        <h2 style="color: red;"> Error: {{ error }}</h2>
     {% endif %}
 </body>
 </html>
