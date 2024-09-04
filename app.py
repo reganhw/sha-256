@@ -1,5 +1,6 @@
 from flask import Flask, render_template, request, session, redirect, url_for, flash
 from sha256 import sha256
+
 app = Flask(__name__)
 app.config.from_object('config')
 #app.config.from_envvar('YOURAPPLICATION_SETTINGS')
@@ -11,15 +12,15 @@ def index():
     if request.method == 'POST':
         user_input = request.form['user_input']
         try:
-            result = sha256(user_input)
-            session['result'] = result 
+            result = sha256(user_input)          # calculate hash
+            session['result'] = result           # set result for session
         except Exception as e:
-            flash(str(e))
-        return redirect(url_for('index'))
+            flash(str(e))                        # display errors
+        return redirect(url_for('index'))        # redirect
     
     # GET
-    result = session.pop('result', None)
-    return render_template('index.html', result=result)
+    result = session.pop('result', None)         # retrieve and clear 'result'
+    return render_template('index.html', result=result) 
 
 if __name__ == '__main__':
     app.run(debug=True)
