@@ -1,10 +1,9 @@
 from flask import Flask, render_template, request, session, redirect, url_for, flash
+from os import environ
 from sha256 import sha256
 
 app = Flask(__name__)
-app.config.from_object('config')
-#app.config.from_envvar('YOURAPPLICATION_SETTINGS')
-app.secret_key = app.config["SECRET_KEY"] 
+app.secret_key = environ.get('SECRET_KEY')
 
 @app.route('/', methods=['GET', 'POST'])
 def index():
@@ -23,4 +22,4 @@ def index():
     return render_template('index.html', result=result) 
 
 if __name__ == '__main__':
-    app.run(debug=True)
+    app.run(debug=True, port=8000)
