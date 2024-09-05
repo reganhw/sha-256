@@ -3,23 +3,28 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="{{ url_for('static', filename='style.css') }}">
     <title>SHA-256 Hash Generator</title>
 </head>
 <body>
-    <h1>Enter your input</h1>
-    {% with messages = get_flashed_messages() %}
-            {% for message in messages %}
-                <h2 style="color: red;">Error: {{ message }}</h2>
-            {% endfor %}
-    {% endwith %}
+    <div class = "content">
 
-    <form action="/" method="POST">
-        <input type="text" name="user_input" placeholder="Enter a value">
-        <button type="submit">Submit</button>
-    </form>
+        <form action="/" method="POST">
+            <input name="user_input" placeholder="Enter a value"></input>
+            <button type="submit">Hash</button>
+        </form>
+        
+        <div id = resultBox> 
+        {% with messages = get_flashed_messages() %}
+                {% for message in messages %}
+                    Error: {{ message }}
+                {% endfor %}
+        {% endwith %}
 
-    {% if result %}
-        <h2>Result: {{ result }}</h2>
-    {% endif %}
+        {% if result %}
+             {{ result }}
+        {% endif %}
+    </div>
+    </div>
 </body>
 </html>

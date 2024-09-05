@@ -1,0 +1,63 @@
+body{
+    display:flex;
+    flex-direction: column;
+    justify-content:center;
+    align-items:center;
+    height: 95vh;
+    font-size:15px;
+    font-family: arial;
+}
+
+.content{
+    display:flex;
+    flex-direction: column;
+    justify-content:center;
+    align-items:center;
+    width: 600px;
+    max-width: 97vw;
+}
+
+form{
+    width: 100%;
+    display:flex;
+    flex-direction: row;
+    justify-content:center;
+    align-items:center;
+}
+
+input{
+    width: 400px;
+    font-size:15px;
+}
+button{
+    margin-left:5px;
+    font-size:15px;
+}
+
+#errorBox{
+    width: 95%;
+    text-align:center;
+    margin-top: 20px;
+}
+
+#resultBox{
+    width: 95%;
+    text-align:center;
+    margin-top:20px;
+    word-wrap: break-word
+}
+
+@media screen and (max-width: 500px) {
+    form{
+        flex-direction:column;
+    }
+    input{
+        width: 90vw;
+    }
+    button{
+        margin-left:0px;
+        margin-top:20px;
+        width: 90vw;
+    }
+
+  }
