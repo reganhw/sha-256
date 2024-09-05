@@ -17,6 +17,13 @@ body{
     max-width: 97vw;
 }
 
+#ttl{
+    font-size: 23px;
+    color: rgb(87, 87, 87);
+    text-align:center;
+    margin-bottom: 50px;
+}
+
 form{
     width: 100%;
     display:flex;
@@ -48,6 +55,9 @@ button{
 }
 
 @media screen and (max-width: 500px) {
+    ttl{
+        font-size: 18px;
+    }
     form{
         flex-direction:column;
     }

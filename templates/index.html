@@ -8,13 +8,13 @@
 </head>
 <body>
     <div class = "content">
-
+        <div id = "ttl"> SHA-256 Hash Generator</div>
         <form action="/" method="POST">
             <input name="user_input" placeholder="Enter a value"></input>
             <button type="submit">Hash</button>
         </form>
         
-        <div id = resultBox> 
+        <div id = "resultBox"> 
         {% with messages = get_flashed_messages() %}
                 {% for message in messages %}
                     Error: {{ message }}
