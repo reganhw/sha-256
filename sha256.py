@@ -1,6 +1,6 @@
-from bitwise_funcs import *
-from preprocessing import *
 from constants import *
+from bitwise_funcs import*
+from preprocessing import*
 
 def sha256(M):
     '''
