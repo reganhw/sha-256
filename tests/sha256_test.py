@@ -3,6 +3,10 @@ import hashlib
 from sha256 import *
 from bitwise_funcs import*
 
+def test_baiscs():
+    assert(len(sha256("hello world"))==64)
+    assert(len(sha256("hello world", "bin"))==256)
+
 def test_single_block():
     text_vectors = ("", "a", "!£$%^&", "Hello world")
     for v in text_vectors:
