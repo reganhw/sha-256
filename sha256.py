@@ -5,7 +5,7 @@ from preprocessing import*
 def sha256(M, form = "hex"):
     '''
     Input: Message string M of any length.
-    Output: The sha256 hash for M. If form=="bin" then the output is in binary. Otherwise it's hex.
+    Output: The sha256 hash for M. If form=="bin" then the output is binary. Otherwise it's hex.
     '''
     M_padded = padding(M)                                    # pad M.
     M_blocks = split_512bit(M_padded)                        # split into 512 bit blocks.
@@ -45,9 +45,6 @@ def update_variables(W,H):
 # Take input from command line.
 
 if __name__ == '__main__':
-    '''
     message = input("Input: ")
     hash = sha256(message)
     print("Hash: ",hash)
-    '''
-    print(sha256('1', "bin"))
