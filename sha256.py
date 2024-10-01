@@ -2,10 +2,10 @@ from constants import *
 from bitwise_funcs import*
 from preprocessing import*
 
-def sha256(M):
+def sha256(M, form = "hex"):
     '''
     Input: Message string M of any length.
-    Output: The sha256 hash for M.
+    Output: The sha256 hash for M. If form=="bin" then the output is in binary. Otherwise it's hex.
     '''
     M_padded = padding(M)                                    # pad M.
     M_blocks = split_512bit(M_padded)                        # split into 512 bit blocks.
@@ -16,8 +16,11 @@ def sha256(M):
         working_variables = update_variables(W,H)            # obtain working variables.
         for j in range (8):                                  
             H[j] = (H[j]+ working_variables[j])&MASK         # update hash values (section 6.2.2-4.)
+    
+    if(form=="bin"):
+        return ''.join(format(h, '08b') for h in H)          # convert final hash values into binary string.
 
-    return ''.join(format(num, '08x') for num in H)          # convert final hash values into hex string.
+    return ''.join(format(h, '08x') for h in H)              # convert final hash values into hex string.
 
 def update_variables(W,H):
     '''
@@ -38,14 +41,6 @@ def update_variables(W,H):
         b=a
         a = (T1 + T2)&MASK
     return a,b,c,d,e,f,g,h
-
-def H_to_bin(H):
-    '''
-    Input: Array of integers H.
-    Output: String where each integer in H is converted to 8-digit hex and then concatenated.
-    '''
-    return ''.join(format(num, '08b') for num in H)
-
 
 # Take input from command line.
 if __name__ == '__main__':
