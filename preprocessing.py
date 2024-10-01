@@ -1,20 +1,6 @@
 from bitwise_funcs import*
 from constants import MASK
 
-def str_to_bin(M):
-    '''
-    Takes in a string and converts to a binary string.
-    Each character in the string is converted to an 8 bit string.
-    '''
-    output = ""    
-    for char in M:
-        if(ord(char)>126):
-            raise Exception(f"The following character is not supported: {char}")
-        output = output+format(ord(char), '08b')
-    
-    
-    return output
-
 # ---------------------------------NIST document page 13, section 5.1.1.---------------------------------
 def get_k(l):
     '''
@@ -30,12 +16,11 @@ def padding(M):
       - k zeros such that 1+l+k := 448 mod 512
       - l in 64 bits
     '''
-    Mb = str_to_bin(M)                 # convert to binary string
+    Mbytes = M.encode()                # convert to bytes
+    Mb= ''.join([format(x,'08b') for x in Mbytes])
     l = len(Mb)                        # l = message length
     k = get_k(l)                       # calculate k
-    zeros = ""                         # k zeros
-    for i in range (k):
-        zeros = zeros+"0"
+    zeros = "0"*k                      # k zeros
     lb = format(l, '064b')             # l in 64bits
     return Mb + "1"+zeros+lb
 
