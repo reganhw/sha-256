@@ -5,7 +5,7 @@ def test_single_block():
     # Reference: https://coding.tools/sha256
     assert(sha256("")=="e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855")
     assert(sha256("a")=="ca978112ca1bbdcafac231b39a23dc4da786eff8147c4e72b9807785afee48bb")
-    assert(sha256("!$%^&")=="eb012954744da04f90257fab2b276062e7f9f21bc7c6d43ca610a9c328d692a0")
+    assert(sha256("!£$%^&")=="eea2da966bc1ee377d4500197d5c694771609f71dd11a7b2fa8c1685daaefd90")
     assert(sha256("Hello world")=="64ec88ca00b268e5ba1a35678a1b5316d212f4f366b2477232534a8aeca37f3c")
 
 def test_many_blocks():
