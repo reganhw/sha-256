@@ -17,7 +17,7 @@ def sha256(M):
         for j in range (8):                                  
             H[j] = (H[j]+ working_variables[j])&MASK         # update hash values (section 6.2.2-4.)
 
-    return H_to_hex(H)                                       # convert final hash values into hex string.
+    return ''.join(format(num, '08x') for num in H)          # convert final hash values into hex string.
 
 def update_variables(W,H):
     '''
@@ -38,17 +38,6 @@ def update_variables(W,H):
         b=a
         a = (T1 + T2)&MASK
     return a,b,c,d,e,f,g,h
-
-
-def H_to_hex(H):
-    '''
-    Input: Array of integers H.
-    Output: String where each integer in H is converted to 8-digit hex and then concatenated.
-    '''
-    output = ""
-    for num in H:
-        output = output + format(num, '08x')
-    return output
 
 def H_to_bin(H):
     '''
