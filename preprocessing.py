@@ -17,7 +17,7 @@ def padding(M):
       - l in 64 bits
     '''
     Mbytes = M.encode()                # convert to bytes
-    Mb= ''.join([format(x,'08b') for x in Mbytes])
+    Mb= ''.join(format(x,'08b') for x in Mbytes)
     l = len(Mb)                        # l = message length
     k = get_k(l)                       # calculate k
     zeros = "0"*k                      # k zeros
