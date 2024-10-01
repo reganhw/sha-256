@@ -1,6 +1,12 @@
 from bitwise_funcs import*
 from constants import MASK
 
+def str_to_bin(M):
+    '''
+    Takes in a string M and converts it to a binary string.
+    '''
+    Mbytes = M.encode()
+    return ''.join(format(x,'08b') for x in Mbytes)
 # ---------------------------------NIST document page 13, section 5.1.1.---------------------------------
 def get_k(l):
     '''
@@ -11,13 +17,12 @@ def get_k(l):
 
 def padding(M):
     '''
-    Takes in a string M of length l and appends:
+    Takes in a string M, converts to a binary string of length l and appends:
       - One "1"
       - k zeros such that 1+l+k := 448 mod 512
       - l in 64 bits
     '''
-    Mbytes = M.encode()                # convert to bytes
-    Mb= ''.join(format(x,'08b') for x in Mbytes)
+    Mb= str_to_bin(M)
     l = len(Mb)                        # l = message length
     k = get_k(l)                       # calculate k
     zeros = "0"*k                      # k zeros
