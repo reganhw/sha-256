@@ -50,6 +50,14 @@ def H_to_hex(H):
         output = output + format(num, '08x')
     return output
 
+def H_to_bin(H):
+    '''
+    Input: Array of integers H.
+    Output: String where each integer in H is converted to 8-digit hex and then concatenated.
+    '''
+    return ''.join(format(num, '08b') for num in H)
+
+
 # Take input from command line.
 if __name__ == '__main__':
     message = input("Input: ")
