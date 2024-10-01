@@ -19,5 +19,8 @@ def test_many_blocks():
     +"can I put my fingers in your mouth before you start to growl?")
     
     for v in (long_str1, long_str2, long_str3):
-        assert(sha256(v)==hashlib.sha256(v.encode()).hexdigest())
+        compare_against = hashlib.sha256(v.encode()).hexdigest()
+        assert(sha256(v)==compare_against)
+        hash_bin = sha256(v, "bin")
+        assert(len(hash_bin)==256)
   

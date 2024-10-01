@@ -18,7 +18,7 @@ def sha256(M, form = "hex"):
             H[j] = (H[j]+ working_variables[j])&MASK         # update hash values (section 6.2.2-4.)
     
     if(form=="bin"):
-        return ''.join(format(h, '08b') for h in H)          # convert final hash values into binary string.
+        return ''.join(format(h, '032b') for h in H)         # convert final hash values into binary string.
 
     return ''.join(format(h, '08x') for h in H)              # convert final hash values into hex string.
 
@@ -43,7 +43,11 @@ def update_variables(W,H):
     return a,b,c,d,e,f,g,h
 
 # Take input from command line.
+
 if __name__ == '__main__':
+    '''
     message = input("Input: ")
     hash = sha256(message)
     print("Hash: ",hash)
+    '''
+    print(sha256('1', "bin"))
